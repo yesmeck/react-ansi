@@ -35,6 +35,7 @@ export interface FoldableLoggerProps {
   showHeader?: boolean;
   linkify?: boolean;
   virtual?: boolean;
+  useClasses?: boolean;
   children?: ({
     hasError,
     errors,

@@ -19,6 +19,7 @@ export interface LogContent {
   linkify?: boolean;
   errorMatcher: ErrorMatcher;
   autoScroll?: boolean;
+  useClasses?: boolean;
 }
 
 const measurementCache = new CellMeasurerCache({
@@ -32,6 +33,7 @@ export function VirtualLogContent({
   linkify,
   errorMatcher,
   autoScroll,
+  useClasses
 }: LogContent) {
   const rowRenderer: ListRowRenderer = useCallback(
     ({ key, index, style, parent }) => {
@@ -51,6 +53,7 @@ export function VirtualLogContent({
             index={index}
             linkify={linkify}
             errorMatcher={errorMatcher}
+            useClasses={useClasses}
             style={style}
           />
         </CellMeasurer>
@@ -79,7 +82,7 @@ export function VirtualLogContent({
   );
 }
 
-export function ClassicLogContent({ particals, style, linkify, errorMatcher }: LogContent) {
+export function ClassicLogContent({ particals, style, linkify, errorMatcher, useClasses }: LogContent) {
   return (
     <pre id="log" className={styles.ansi} style={style}>
       {particals.map((partical, index) => {
@@ -91,6 +94,7 @@ export function ClassicLogContent({ particals, style, linkify, errorMatcher }: L
             index={index}
             linkify={linkify}
             errorMatcher={errorMatcher}
+            useClasses={useClasses}
           />
         );
       })}
